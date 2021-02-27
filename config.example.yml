@@ -1,0 +1,4 @@
+token: "AWOOGA"
+hot_reload: true
+logging:
+  level: "INFO"
