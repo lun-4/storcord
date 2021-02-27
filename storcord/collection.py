@@ -44,5 +44,7 @@ class Collection:
     async def delete_one(self, query_params: dict):
         result = await self.find_one(query_params)
         if result is None:
-            return
+            return False
+
         await result.delete()
+        return True

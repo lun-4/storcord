@@ -37,7 +37,6 @@ class Storcord(Cog):
 
     @commands.command()
     async def insert(self, ctx, name: str, *, doc: str):
-        print(repr(name), repr(doc))
         client = self.clients[ctx.guild.id]
         coll = await client.get_collection(name)
         if coll is None:
@@ -48,7 +47,6 @@ class Storcord(Cog):
 
     @commands.command()
     async def find(self, ctx, name: str, *, doc: str):
-        print(repr(name), repr(doc))
         client = self.clients[ctx.guild.id]
         coll = await client.get_collection(name)
         if coll is None:
@@ -56,6 +54,19 @@ class Storcord(Cog):
 
         result = await coll.find_one(json.loads(doc))
         await ctx.send(repr(result.content))
+
+    @commands.command()
+    async def delete(self, ctx, name: str, *, doc: str):
+        client = self.clients[ctx.guild.id]
+        coll = await client.get_collection(name)
+        if coll is None:
+            return await ctx.send("collction not found")
+
+        ok = await coll.delete_one(json.loads(doc))
+        if ok:
+            await ctx.ok()
+        else:
+            await ctx.ok(emoji=ctx.emoji("generic.no"))
 
 
 def setup(bot):

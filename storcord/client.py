@@ -17,19 +17,6 @@ class Client:
         self.guild = self.discord.get_guild(guild_id)
         assert self.guild is not None
 
-    # async def create_index(self):
-    #     index_channel = await self.guild.create_text_channel(
-    #         name="stor-index", reason="storcord init"
-    #     )
-    #     await index_channel.send("{}")
-
-    # async def ensure_index(self):
-    #     index_channel = discord.utils.find(
-    #         lambda c: c.name == "stor-index", self.guild.channels
-    #     )
-    #     if index_channel is None:
-    #         await self.create_index()
-
     async def create_collection(self, name: str) -> Collection:
         channel = await self.guild.create_text_channel(
             name=f"stor-coll-{name}", reason="storcord create collection"
