@@ -48,31 +48,31 @@ class ErrorHandling(Cog):
         orig = error.original
         content = ctx.message.content
 
-        if isinstance(orig, self.SayException):
-            arg0 = orig.args[0]
+        # if isinstance(orig, self.SayException):
+        #    arg0 = orig.args[0]
 
-            if ctx.guild is None:
-                ctx.guild = DMChan(ctx.author.id)
+        #    if ctx.guild is None:
+        #        ctx.guild = DMChan(ctx.author.id)
 
-            log.warning(
-                "SayException: %s[%d] %s %r => %r",
-                ctx.guild,
-                ctx.guild.id,
-                ctx.author,
-                content,
-                arg0,
-            )
+        #    log.warning(
+        #        "SayException: %s[%d] %s %r => %r",
+        #        ctx.guild,
+        #        ctx.guild.id,
+        #        ctx.author,
+        #        content,
+        #        arg0,
+        #    )
 
-            return await ctx.send(arg0)
+        #    return await ctx.send(arg0)
 
-        if isinstance(orig, tuple(self.bot.simple_exc)):
-            log.error("errored at %r from %s\n%r", content, ctx.author, orig)
-            return await ctx.send(f"Error: `{error.original!r}` \n" f"{read_help(ctx)}")
+        # if isinstance(orig, tuple(self.bot.simple_exc)):
+        #     log.error("errored at %r from %s\n%r", content, ctx.author, orig)
+        #     return await ctx.send(f"Error: `{error.original!r}` \n" f"{read_help(ctx)}")
 
         log.exception("errored at %r from %s", content, ctx.author, exc_info=orig)
 
-        if isinstance(orig, self.bot.cogs["Coins"].TransferError):
-            return await ctx.send(f"JoséCoin error: `{orig!r}`")
+        # if isinstance(orig, self.bot.cogs["Coins"].TransferError):
+        #     return await ctx.send(f"JoséCoin error: `{orig!r}`")
 
         return await ctx.send(
             "An error happened during command execution:"
