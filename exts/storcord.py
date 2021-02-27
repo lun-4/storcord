@@ -31,12 +31,14 @@ class Storcord(Cog):
 
     @commands.command()
     async def newcoll(self, ctx, name: str):
+        """create a collection"""
         client = self.clients[ctx.guild.id]
         coll = await client.create_collection(name)
         return await ctx.send(repr(coll))
 
     @commands.command()
     async def insert(self, ctx, name: str, *, doc: str):
+        """insert a document in a collection"""
         client = self.clients[ctx.guild.id]
         coll = await client.get_collection(name)
         if coll is None:
@@ -47,6 +49,7 @@ class Storcord(Cog):
 
     @commands.command()
     async def find(self, ctx, name: str, *, doc: str):
+        """find a document in a collection"""
         client = self.clients[ctx.guild.id]
         coll = await client.get_collection(name)
         if coll is None:
@@ -57,6 +60,7 @@ class Storcord(Cog):
 
     @commands.command()
     async def delete(self, ctx, name: str, *, doc: str):
+        """delete a document from a collection"""
         client = self.clients[ctx.guild.id]
         coll = await client.get_collection(name)
         if coll is None:
