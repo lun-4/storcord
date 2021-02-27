@@ -8,6 +8,9 @@ class Collection:
         self.guild = client.guild
         self.channel = channel
 
+    def __repr__(self) -> str:
+        return f"<Collection guild={self.guild!r} channel={self.channel!r}>"
+
     async def find_one(self, query_params: dict):
         # work with copy of params
         query_params = dict(query_params)
@@ -19,7 +22,7 @@ class Collection:
 
         async for message in self.channel.history(limit=None):
             possible_match_raw = json.loads(message.content)
-            possible_match = possible_match_raw["doc"]
+            possible_match = possible_match_raw["_doc"]
 
             match = True
             for query_key, query_value in query_params.items():
