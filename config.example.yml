@@ -1,4 +1,7 @@
 token: "AWOOGA"
+command_prefix: "stor!"
 hot_reload: true
+bot_class: "bot:StorcordBot"
+config_class: "config:MyConfig"
 logging:
   level: "INFO"
