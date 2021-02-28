@@ -44,7 +44,11 @@ class Storcord(Cog):
         if coll is None:
             return await ctx.send("collction not found")
 
-        await coll.insert_one(json.loads(doc))
+        doc = json.loads(doc)
+        if not isinstance(doc, dict):
+            return await ctx.send("use a dict dipshit")
+
+        await coll.insert_one(doc)
         await ctx.ok()
 
     @commands.command()
@@ -53,9 +57,13 @@ class Storcord(Cog):
         client = self.clients[ctx.guild.id]
         coll = await client.get_collection(name)
         if coll is None:
-            return await ctx.send("collction not found")
+            return await ctx.send("collection not found")
 
-        result = await coll.find_one(json.loads(doc))
+        doc = json.loads(doc)
+        if not isinstance(doc, dict):
+            return await ctx.send("use a dict dipshit")
+
+        result = await coll.find_one(doc)
         await ctx.send(repr(result.content))
 
     @commands.command()
