@@ -18,12 +18,21 @@ cp config.example.yml config.yml
 # run
 
 ```
-python3 -m lifesaver.cli
+env STORCORD_AUTH_TOKEN=something_you_want_here python3 -m lifesaver.cli
 ```
 
 then `stor!help`
 
-## drawbacks
+# drawbacks
 
 - its discord as a backing store. what the hell would you want with this
 - max ~2kb documents lol (future work on document sharding is pending)
+
+# le api
+
+have `Authorization` header set to the value in `STORCORD_AUTH_TOKEN`
+
+- `PUT /api/v1/GUILD_ID/collections/NAME` to create a collection
+- `PUT /api/v1/GUILD_ID/collections/NAME/document` to create a document
+- `PUT /api/v1/GUILD_ID/collections/NAME/find` to find a document
+- `PUT /api/v1/GUILD_ID/collections/NAME/delete` to delete a document

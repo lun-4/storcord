@@ -49,3 +49,13 @@ async def find(guild_id: int, name):
         return "rip", 404
 
     return jsonify({"result": json.loads(result.content)})
+
+
+@bp.route("/<int:guild_id>/collections/<name>/delete", methods=["PUT"])
+@auth
+async def delete(guild_id: int, name):
+    coll = await storcord(guild_id).get_collection(name)
+    j = await request.get_json()
+    assert isinstance(j, dict)
+    result = await coll.delete_one(j)
+    return jsonify({"found": result})
