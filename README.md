@@ -2,6 +2,20 @@
 
 a badly-designed document store on top of discord (meme, not production ready, NOT PRODUCTION READY)
 
+## testimonials
+
+> Stor Corded is the futuer of the websc aled . Please help me im trapped in lun4s basement and theres no way out
+
+- Not Nite
+
+> Fuck you all
+
+- Anonymous
+
+> heroku delete my data base, storcord fix all my problem
+
+- vivi
+
 # install
 
 ```
