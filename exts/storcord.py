@@ -63,8 +63,8 @@ class Storcord(Cog):
         if not isinstance(doc, dict):
             return await ctx.send("use a dict dipshit")
 
-        result = await coll.find_one(doc)
-        await ctx.send(repr(result.content))
+        result = await coll.find(doc)
+        await ctx.send(repr(result))
 
     @commands.command()
     async def delete(self, ctx, name: str, *, doc: str):
@@ -74,11 +74,8 @@ class Storcord(Cog):
         if coll is None:
             return await ctx.send("collction not found")
 
-        ok = await coll.delete_one(json.loads(doc))
-        if ok:
-            await ctx.ok()
-        else:
-            await ctx.ok(emoji=ctx.emoji("generic.no"))
+        count = await coll.delete(json.loads(doc))
+        await ctx.send(f"deleted {count} documents")
 
 
 def setup(bot):
