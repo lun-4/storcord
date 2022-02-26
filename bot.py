@@ -23,7 +23,9 @@ async def _boot_hypercorn(app, config, *, loop):
         await TCPServer(app, loop, config, reader, writer)
 
     server = await asyncio.start_server(
-        _callback, backlog=config.backlog, sock=socket.insecure_sockets[0], loop=loop
+        _callback,
+        backlog=config.backlog,
+        sock=socket.insecure_sockets[0],
     )
     return server
 
