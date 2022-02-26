@@ -80,7 +80,7 @@ class ErrorHandling(Cog):
         )
 
     async def _err(self, ctx, msg: str):
-        await ctx.err(f"{msg}\n" f"{read_help(ctx)}")
+        await ctx.send(f"{msg}\n" f"{read_help(ctx)}")
 
     async def _handle_bad_arg(self, ctx, error):
         await self._err(ctx, "bad argument —  " f"{error!s}")
